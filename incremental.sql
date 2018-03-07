@@ -12,8 +12,12 @@ CREATE TABLE `users` (
   `birthyear` int(11) DEFAULT NULL,
   `maintaskpreferenceid` int(11) DEFAULT NULL,
   `nickname` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `lasttaskid` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `lasttaskfk_idx` (`lasttaskid`),
+  CONSTRAINT `lasttaskid` FOREIGN KEY (`lasttaskid`) REFERENCES `tasks` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
 
 CREATE TABLE `tasks` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -48,5 +52,3 @@ CREATE TABLE `users_tasks` (
   KEY `user_id_idx` (`user_id`),
   CONSTRAINT `user_hist_id_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
