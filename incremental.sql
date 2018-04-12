@@ -52,3 +52,14 @@ CREATE TABLE `users_tasks` (
   KEY `user_id_idx` (`user_id`),
   CONSTRAINT `user_hist_id_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+ALTER TABLE `juxtarem_test`.`users` 
+CHANGE COLUMN `password` `password` CHAR(64) NULL DEFAULT NULL ,
+ADD COLUMN `created` DATETIME NULL DEFAULT NOW() AFTER `password`;
+
+ALTER TABLE `juxtarem_test`.`users` 
+DROP COLUMN `main_mail`,
+ADD COLUMN `userscol` VARCHAR(45) NOT NULL AFTER `mainmail`;
+
+ALTER TABLE `juxtarem`.`users` 
+ADD COLUMN `gender` VARCHAR(10) NULL AFTER `mainmail`;
